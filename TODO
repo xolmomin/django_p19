@@ -1,0 +1,9 @@
+1. regions va districts larni fixtures orqali qoshish
+2. database dagi barcha product, category, region, district larni
+import export [csv, xlsx, json] dan otkazish va yuklash kk
+
+import-export
+
+
+
+https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro
