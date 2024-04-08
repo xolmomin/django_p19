@@ -15,6 +15,7 @@ INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
+    "django.contrib.humanize",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
@@ -135,6 +136,7 @@ customColorPalette = [
         'label': 'Blue'
     },
 ]
+
 CKEDITOR_5_CONFIGS = {
     # 'default': {
     #     'toolbar': ['heading', '|', 'bold', 'italic', 'link',
@@ -195,3 +197,12 @@ CKEDITOR_5_CONFIGS = {
         }
     }
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'xolmomin@gmail.com'
+EMAIL_HOST_PASSWORD = '****'
+
+
