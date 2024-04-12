@@ -7,7 +7,7 @@ SECRET_KEY = "django-insecure-^5^88+n4g(c17$sq4$+k66%12whb4kv9)0#m=e@9!s&%mw5@=d
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -53,6 +53,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "root.wsgi.application"
+AUTH_USER_MODEL = 'apps.User'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
