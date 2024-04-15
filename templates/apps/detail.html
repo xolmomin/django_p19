@@ -44,20 +44,20 @@
                     <article class="article">
                         <div class="article-img"><img src="https://www.bootdey.com/image/800x350/87CEFA/000000" title
                                                       alt></div>
-                        <div class="article-title"><h6><a href="#">Lifestyle</a></h6>
-                            <h2>{{ blog.title }}</h2>
+                        <div class="article-title"><h6><a href="#">{{ product.category.name }}</a></h6>
+                            <h2>{{ product.title }}</h2>
                             <div class="media">
                                 <div class="avatar"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" title
                                                          alt></div>
-                                <div class="media-body"><label>{{ blog.author.username }}</label>
-                                    <span>{{ blog.created_at|date:"d M Y" }}</span></div>
+                                <div class="media-body"><label>{{ product.author.username }}</label>
+                                    <span>{{ product.created_at|date:"d M Y" }}</span></div>
                             </div>
                         </div>
                         <div class="article-content">
-                            {{ blog.description }}
+                            {{ product.description }}
                         </div>
                         <div class="nav tag-cloud">
-                            {% for tag in blog.tag.all %}
+                            {% for tag in product.tag.all %}
                                 <a href="#">{{ tag.name }}</a>
                             {% endfor %}
                         </div>
@@ -105,26 +105,7 @@
                     </div>
                     <div class="widget widget-latest-post">
                         <div class="widget-title"><h3>Latest Post</h3></div>
-                        <div class="widget-body">
-                            {% for latest_blog in latest_blogs %}
-                                <div class="latest-post-aside media">
-                                    <div class="lpa-left media-body">
-                                        <div class="lpa-title"><h5><a
-                                                href="{% url 'detail_view' latest_blog.id %}">{{ latest_blog.title }}</a>
-                                        </h5></div>
-                                        <div class="lpa-meta">
-                                            <a class="name"
-                                               href="{% url 'detail_view' latest_blog.id %}"> {{ latest_blog.author.username }}
-                                            </a> <a class="date"
-                                                    href="{% url 'detail_view' latest_blog.id %}"> {{ latest_blog.created_at|date:"d M Y" }} </a>
-                                        </div>
-                                    </div>
-                                    <div class="lpa-right"><a href="{% url 'detail_view' latest_blog.id %}"> <img
-                                            src="https://www.bootdey.com/image/400x200/E6E6FA/000000" title alt> </a>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </div>
+
                     </div>
                     <div class="widget widget-tags">
                         <div class="widget-title"><h3>Latest Tags</h3></div>

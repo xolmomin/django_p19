@@ -25,7 +25,19 @@ https://bootdey.com/snippets/view/blog-detail-page
 
 
 
+1. django class based view + form
+2. django admin
+3. django orm + class meta + modeldagi narsalar(Field)
 
 
-10.10.1.212
+# uuid
+# login, register
 
+
+
+class based view
+
+1. product list, filter by category
+2. search by (title, description)
+3. pagination
+https://bootdey.com/snippets/view/Shop-product-list

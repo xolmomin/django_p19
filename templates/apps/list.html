@@ -44,19 +44,15 @@
             <div class="row align-items-start">
                 <div class="col-lg-8 m-15px-tb">
                     <div class="row">
-                        {% for blog in blogs %}
+                        {% for product in object_list %}
                             <div class="col-sm-6">
                                 <div class="blog-grid">
                                     <div class="blog-img">
-                                        <div class="date"><span>{{ blog.created_at|date:"d" }}</span>
-                                            <label>{{ blog.created_at|date:"M"|upper }}</label></div>
-                                        <a href="{% url 'detail_view' blog.id %}"> <img src="{{ blog.image.url }}"
-                                                          title
-                                                          alt> </a></div>
-                                    <div class="blog-info"><h5><a href="{% url 'detail_view' blog.id %}">{{ blog.title }}</a>
+                                        <a href="#"> <img src="{% url 'detail_view' product.id %}" alt> </a></div>
+                                    <div class="blog-info"><h5><a href="{% url 'detail_view' product.id %}">{{ product.title }} ({{ product.category.name }})</a>
                                     </h5>
-                                        <p>{{ blog.description|truncatewords:3 }}</p>
-                                        <div class="btn-bar"><a href="{% url 'detail_view' blog.id %}" class="px-btn-arrow"> <span>Read More</span> <i
+                                        <p>{{ product.description|truncatewords:3 }}</p>
+                                        <div class="btn-bar"><a href="#" class="px-btn-arrow"> <span>Read More</span> <i
                                                 class="arrow"></i> </a></div>
                                     </div>
                                 </div>
@@ -117,7 +113,7 @@
                         <div class="widget-body">
                             <div class="nav tag-cloud">
                                 {% for tag in tags %}
-                                    <a href="#">{{ tag.name }}</a>
+                                    <a href="{% url 'list_view' %}?tag={{ tag.id }}">{{ tag.name }}</a>
                                 {% endfor %}
                             </div>
                         </div>
