@@ -41,7 +41,7 @@
 #         verbose_name = 'Mahsulot'
 #         verbose_name_plural = 'Mahsulotlar'
 from django.db.models import Model, DecimalField, SET_NULL, ForeignKey, CharField, DateTimeField, BooleanField, \
-    ManyToManyField
+    ManyToManyField, TextField
 
 
 class BaseModel(Model):
@@ -58,13 +58,13 @@ class Category(Model):
 
 class Product(BaseModel):
     title = CharField(verbose_name='Nomi', max_length=255)
+    description = TextField(null=True, blank=True)
     price = DecimalField(max_digits=10, decimal_places=2)
     category = ForeignKey("apps.Category", SET_NULL, null=True, blank=True)
     tags = ManyToManyField("apps.Tag", related_name="products", blank=True)
     is_active = BooleanField(default=True)
 
     class Meta:
-        db_table = 'mahsulot'
         ordering = ['-id']
         verbose_name = 'Mahsulot'
         verbose_name_plural = 'Mahsulotlar'

@@ -34,10 +34,10 @@ https://bootdey.com/snippets/view/blog-detail-page
 # login, register
 
 
-
 class based view
 
 1. product list, filter by category
 2. search by (title, description)
 3. pagination
 https://bootdey.com/snippets/view/Shop-product-list
+

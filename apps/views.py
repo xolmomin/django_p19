@@ -1,8 +1,29 @@
-from django.shortcuts import render
+from django.db.models import Q
 from django.views.generic import ListView, DetailView
 
 from apps.models import Product, Category, Tag
-from django.db.models import Q
+
+
+class IndexListView(ListView):
+    queryset = Product.objects.all()
+    template_name = 'apps/index.html'
+    context_object_name = 'products'
+    paginate_by = 3
+
+    def get_queryset(self):
+        category_id = self.request.GET.get('category')
+        search = self.request.GET.get('search')
+        queryset = Product.objects.all()
+        if category_id:
+            queryset = queryset.filter(category_id=category_id)
+        if search:
+            queryset = queryset.filter(Q(title__icontains=search) | Q(description__icontains=search))
+        return queryset
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+        context['categories'] = Category.objects.all()
+        return context
 
 
 class ProductListView(ListView):
