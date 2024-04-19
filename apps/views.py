@@ -1,6 +1,8 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView, FormView, UpdateView, CreateView
 
+from apps.forms import RegisterModelForm
 from apps.models import Product, Category, Tag
 
 
@@ -46,22 +48,14 @@ class ProductListView(ListView):
 class ProductDetailView(DetailView):
     queryset = Product.objects.all()
     template_name = 'apps/detail.html'
-    slug_url_kwarg = 'pk'
 
-# def list_view(request):
-#     # Product.objects.first()
-#     # Product.objects.last()
-#     # product o u
-#     # products = Product.objects.filter(is_active=True)
-#     # products = Product.objects.order_by('-title', 'created_at')
-#     products = Product.objects.filter(Q(title__icontains='u') | Q(title__icontains='o'))
-#     context = {
-#         'blogs': products,
-#         'tags': [],
-#         'latest_blogs': [],
-#     }
-#     return render(request, 'apps/list.html', context)
-#
-#
-# def detail_view(request, pk):
-#     return render(request, 'apps/detail.html')
+
+class RegisterCreateView(CreateView):
+    form_class = RegisterModelForm
+    template_name = 'apps/auth/register.html'
+    success_url = 'login'
+
+
+class ProfileTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = 'apps/auth/profile.html'
+    login_url = 'login_page'
