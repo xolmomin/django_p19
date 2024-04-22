@@ -2,3 +2,5 @@
 media
 .idea
 db.sqlite3
+static*
+templates/limupa-digital-products-store*

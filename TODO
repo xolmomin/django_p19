@@ -1,33 +1,17 @@
 
 
-https://bootdey.com/snippets/view/bs4-profile-contacts
-https://bootdey.com/snippets/view/Table-user-information
 
-input, smtp
+image, css, js
 
 
-python3 manage.py sendtestemail botir@gmail.com
-
-CRUD
-
-https://bootdey.com/snippets/view/Latest-News-Blog
-https://books.agiliq.com/projects/django-orm-cookbook/en/latest/index.html#
-
-
-
-template tags
+media, static
 
 
 
 
-https://bootdey.com/snippets/view/Latest-Blog-and-News
-https://bootdey.com/snippets/view/blog-detail-page
 
 
 
-1. django class based view + form
-2. django admin
-3. django orm + class meta + modeldagi narsalar(Field)
 
 
 # uuid
@@ -40,4 +24,10 @@ class based view
 2. search by (title, description)
 3. pagination
 https://bootdey.com/snippets/view/Shop-product-list
+
+
+
+
+
+
 
