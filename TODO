@@ -26,3 +26,24 @@ https://bootdey.com/snippets/view/Shop-product-list
 
 
 
+
+1. login, register(pochtasiga xabar yuborish)
+2. pochtaga xabar yuborish 1martalik tasdiqlash linki orqali amalga oshirilsin
+
+
+celery, redis(cache, mq)
+
+
+
+
+celery orqali pochtaga xabar yuborish
+
+
+
+
+rabbitmq, redis(message broker)
+
+nosql db
+
+
+

@@ -1,6 +1,6 @@
 from django.contrib.auth.admin import admin, UserAdmin
 
-from apps.models import User
+from apps.models import User, Blog
 from django.utils.translation import gettext_lazy as _
 
 
@@ -23,3 +23,8 @@ class UserModelAdmin(UserAdmin):
         ),
         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
+
+
+@admin.register(Blog)
+class BlogModelAdmin(admin.ModelAdmin):
+    pass

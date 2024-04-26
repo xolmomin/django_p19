@@ -18,18 +18,6 @@
                 <div class="col-lg-9 col-md-8">
                     <div class="header-top-right">
                         <ul class="ht-menu">
-                            <!-- Begin Setting Area -->
-                            <li>
-                                <div class="ht-setting-trigger"><span>Setting</span></div>
-                                <div class="setting ht-setting">
-                                    <ul class="ht-setting-list">
-                                        <li><a href="login-register.html">My Account</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="login-register.html">Sign In</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <!-- Setting Area End Here -->
                             <!-- Begin Currency Area -->
                             <li>
                                 <span class="currency-selector-wrapper">Currency :</span>
@@ -58,6 +46,34 @@
                                 </div>
                             </li>
                             <!-- Language Area End Here -->
+                            <!-- Begin Setting Area -->
+                            <li>
+                                {% if user.is_authenticated %}
+                                    <div class="ht-setting-trigger">
+                                        {{ user.username }}
+                                        <span></span>
+                                    </div>
+                                    <div class="setting ht-setting">
+                                        <ul class="ht-setting-list">
+                                            <li><a href="#">My Account</a></li>
+                                            <li><a href="#">Checkout</a></li>
+                                            <li><a href="{% url 'logout_page' %}">Logout</a></li>
+                                        </ul>
+                                    </div>
+                                {% else %}
+                                    <div class="ht-setting-trigger">
+                                        Login
+                                        <span></span>
+                                    </div>
+                                    <div class="setting ht-setting">
+                                        <ul class="ht-setting-list">
+                                            <li><a href="{% url 'login_page' %}">Login</a></li>
+                                        </ul>
+                                    </div>
+                                {% endif %}
+
+                            </li>
+                            <!-- Setting Area End Here -->
                         </ul>
                     </div>
                 </div>
@@ -73,7 +89,7 @@
                 <!-- Begin Header Logo Area -->
                 <div class="col-lg-3">
                     <div class="logo pb-sm-30 pb-xs-30">
-                        <a href="index.html">
+                        <a href="{% url 'blog_list_page' %}">
                             <img src="{% static 'apps/images/menu/logo/1.jpg' %}" alt="">
                         </a>
                     </div>
