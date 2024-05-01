@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from django.views import View
 from django.views.generic import TemplateView, DetailView, ListView
 
-from apps.models import Blog, Category
+from apps.models import Blog, Category, Product
 
 
 class BlogListView(ListView):

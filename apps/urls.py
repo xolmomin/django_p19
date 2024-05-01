@@ -25,9 +25,3 @@ urlpatterns = [
     path('logout', CustomLogoutView.as_view(), name='logout_page'),
     path('send', send_email_to_user, name='logout_page'),
 ]
-
-# crontab
-# celery periodic
-# apscheduler
-
-

@@ -10,7 +10,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
-    'jazzmin',
+    # 'jazzmin',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -19,12 +19,16 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'apps',
+    'django_celery_results',
     'django_ckeditor_5',
+    'django_celery_beat',
+    'django_admin_hstore_widget',
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -57,8 +61,12 @@ WSGI_APPLICATION = "root.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / 'db.sqlite3',
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": 'new_django_db',
+        "USER": "postgres",
+        "PASSWORD": "1",
+        "HOST": "localhost",
+        "PORT": 5432
     }
 }
 
@@ -83,13 +91,21 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "en"
 
 TIME_ZONE = "Asia/Tashkent"
 
 USE_I18N = True
+USE_L10N = True
 
 USE_TZ = False
+
+LANGUAGES = (
+    ("en", "English"),
+    ("uz", "Uzbek")
+)
+
+LOCALE_PATHS = BASE_DIR / 'locale'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -246,7 +262,7 @@ JAZZMIN_SETTINGS = {
     "topmenu_links": [
 
         # Url that gets reversed (Permissions can be added)
-        {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
 
         # external url that opens in a new window (Permissions can be added)
         {"name": "Support", "url": "https://t.me/yangibot123?start=27653232", "new_window": True},
@@ -340,8 +356,10 @@ JAZZMIN_SETTINGS = {
     # Add a language dropdown into the admin
 }
 
+# CELERY_BROKER_URL = 'redis://localhost:6379/0' # redis
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'  # rabbitmq
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'django-db'
 
 #
 # LOGGING = {
@@ -365,3 +383,30 @@ CELERY_BROKER_URL = 'redis://localhost:6379/0'
 #         }
 #     }
 # }
+
+
+'''
+
+1. celery
+2. celery result (backend)
+3. celery flower
+4. celery-beat - (crontab)
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. celery -A root worker -l INFO
+
+3. celery -A root.celery.app flower --port=5001
+4. celery -A root beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
+
+'''
