@@ -1,37 +1,20 @@
-from django.contrib.auth import logout
-from django.contrib.auth.views import LoginView
-from django.db.models import Count
-from django.shortcuts import redirect
-from django.views import View
-from django.views.generic import TemplateView, DetailView, ListView
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
-from apps.models import Blog, Category, Product
-
-
-class BlogListView(ListView):
-    queryset = Blog.objects.all()
-    template_name = 'apps/blog/blog-list-left-sidebar.html'
-    context_object_name = 'blogs'
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(object_list=object_list, **kwargs)
-        context['categories'] = Category.objects.prefetch_related('blog_set').annotate(blog_count=Count('blog__id'))
-        # context['categories'] = Category.objects.all()
-        return context
+from apps.filters import CourseFilterSet
+from apps.models import Course
+from apps.serializers import CourseModelSerializer
 
 
-class BlogDetailView(DetailView):
-    queryset = Blog.objects.all()
-    template_name = 'apps/blog-details-left-sidebar.html'
-    context_object_name = 'blog'
+class CourseListAPIView(ListAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseModelSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = CourseFilterSet
 
 
-class CustomLoginView(LoginView):
-    template_name = 'apps/auth/login.html'
-    next_page = 'blog_list_page'
-
-
-class CustomLogoutView(View):
-    def get(self, request, *args, **kwargs):
-        logout(request)
-        return redirect('blog_list_page')
+class CourseRetrieveAPIView(RetrieveAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseModelSerializer
+    permission_classes = IsAuthenticated,
