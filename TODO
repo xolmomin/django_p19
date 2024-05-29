@@ -76,15 +76,19 @@ apscheduler
 
 
 
-1. adminkaga userlar listidag rasmi ham chiqishi kk
-2. category(slug)
-3. course(title, video, description, price) apisini chiqarish
-4. user profile update api
+1. adminkaga userlar listidagi rasmi ham chiqishi kk ✅
+2. category(slug) ✅
+3. course(title, video, description, price) apisini chiqarish ✅
+4. user profile update api ✅
 5. APIlar listi
 6. teacherlar
-7. adminkada (studentlar, teacher lar, moderatorlar, adminlar alohida chiqishi kk)
+7. adminkada (studentlar, teacher lar, moderatorlar, adminlar alohida chiqishi kk) ✅
 8. moderator yoki admin tomonidan kursga studentlarni qoshish imkoniyati [adminkada]
 9. kurs detailga kirishda (agar student kursga azo bolsa kira olishi kk)
+10.
+11.
+12.
+
 
 user/get-me
 course -> (post-qoshish), (get-listini olish)

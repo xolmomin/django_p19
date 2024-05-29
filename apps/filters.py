@@ -8,4 +8,4 @@ class CourseFilterSet(FilterSet):
 
     class Meta:
         model = Course
-        fields = 'name', 'category'
+        fields = 'title', 'category'
